@@ -1,0 +1,83 @@
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.north_title{
+    height: 40px;
+    width: 500px;
+    line-height: 40px;
+    font-size: 30px;
+    margin-left: 50px;
+}
+.north_right{
+    margin-right: 20px;
+    width: 50px;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 20px;
+}
+.menu_2{
+    margin-top: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #eeeeee;
+    z-index: 50;
+    opacity: 0.6;
+}
+.hidden{
+    display: none;
+}
+.div_host{
+    position: fixed;
+    width: 500px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+    z-index: 100;
+    margin-left: -250px;
+    margin-top: -250px;
+    background-color: #eeeeee;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.form_label{
+    display: inline-block;
+    width: 80px;
+    text-align: right;
+}
+.form_{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    margin-right: 50px;
+    height: 30px;
+}
+.button{
+    text-align: right;
+}
+.div_group{
+    position: fixed;
+    width: 500px;
+    height: 200px;
+    left: 50%;
+    top: 50%;
+    z-index: 100;
+    margin-left: -250px;
+    margin-top: -250px;
+    background-color: #eeeeee;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.welcome{
+    text-align: center;
+    font-size: 100px; !important;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5.2/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5.2/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5.2/demo.css">
+	<link rel="stylesheet" type="text/css" href="/static/commons.css">
+</head>
+<body>
+    <div class="mask hidden"></div>
+    <div id="_group" class="div_group hidden">
+        <form id="form_group" method="post" action="/add_group">
+            <div class="form_">
+                <label for="groupname" class="form_label">groupname:</label>
+                <input class="easyui-validatebox" type="text" name="groupname" data-options="required:true" />
+            </div>
+            <div class="form_">
+                <input class="hidden" name="group_id"/>
+            </div>
+            <div class="form_ button">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm_g()">添加</a>
+                &nbsp;
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm_g()">修改</a>
+	    	    &nbsp;
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm_g()">取消</a>
+            </div>
+        </form>
+    </div>
+    <input id="add_group" type="button" value="添加分组"/>
+    <table class="easyui-datagrid" data-options="fit:true,fitColumns:true">
+        <thead>
+            <tr>
+                <th data-options="field:'itemid'" width="80"></th>
+                <th data-options="field:'productid'" width="800">Group Name</th>
+                <th data-options="field:'status',align:'center'" width="150">Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in group_list %}
+                {% if row.groupname != "未分组" %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ row }}</td>
+                        <td>
+                            <a href="javascript:void(0)" class="easyui-linkbutton" name="modify_group" group_id={{ row.id }}>修改</a>
+                            <a name="del_group" href="/del_group?group_id={{ row.id }}" class="easyui-linkbutton">删除</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript" src="/static/jquery-easyui-1.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+    <script src="/static/_group.js"></script>
+</body>
+</html>

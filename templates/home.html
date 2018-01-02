@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台管理</title>
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5.2/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5.2/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5.2/demo.css">
+	<link rel="stylesheet" type="text/css" href="/static/commons.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+</head>
+<body class="easyui-layout">
+    <div class="mask hidden"></div>
+{#    <div id="_host" class="div_host hidden">#}
+{#        <form id="form_host" method="post" action="/add_host">#}
+{#            <div class="form_">#}
+{#                <label for="hostname" class="form_label">hostname:</label>#}
+{#                <input class="easyui-validatebox" type="text" name="hostname" data-options="required:true" />#}
+{#            </div>#}
+{#            <div class="form_">#}
+{#                <label for="ip" class="form_label">ip:</label>#}
+{#                <input class="easyui-validatebox" type="text" name="ip" data-options="required:true,validType:'ip'" />#}
+{#            </div>#}
+{#            <div class="form_">#}
+{#                <label for="port" class="form_label">port:</label>#}
+{#                <input class="easyui-validatebox" type="text" name="port" data-options="required:true,validType:'onlyNum'" />#}
+{#            </div>#}
+{#            <div class="form_">#}
+{#                <label for="os" class="form_label">os:</label>#}
+{#                <select name="os">#}
+{#                    <option selected value="windows">windows</option>#}
+{#                    <option value="linux">linux</option>#}
+{#                </select>#}
+{#            </div>#}
+{#            <div class="form_">#}
+{#                <label for="hostgroup" class="form_label">group:</label>#}
+{#                <select name="hostgroup">#}
+{#                    {% for row in group_list %}#}
+{#                        {% if row.groupname == "未分组" %}#}
+{#                            <option selected value={{ row.groupname }}>{{ row.groupname }}</option>#}
+{#                        {% else %}#}
+{#                            <option value={{ row.groupname }}>{{ row.groupname }}</option>#}
+{#                        {% endif %}#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#            </div>#}
+{#            <div class="form_">#}
+{#                <input class="hidden" name="host_id"/>#}
+{#            </div>#}
+{#            <div class="form_ button">#}
+{#                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">添加</a>#}
+{#                &nbsp;#}
+{#                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">修改</a>#}
+{#	    	    &nbsp;#}
+{#                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">取消</a>#}
+{#            </div>#}
+{#        </form>#}
+{#    </div>#}
+{#    <div id="_group" class="div_group hidden">#}
+{#        <form id="form_group" method="post" action="/add_group">#}
+{#            <div class="form_">#}
+{#                <label for="groupname" class="form_label">groupname:</label>#}
+{#                <input class="easyui-validatebox" type="text" name="groupname" data-options="required:true" />#}
+{#            </div>#}
+{#            <div class="form_">#}
+{#                <input class="hidden" name="group_id"/>#}
+{#            </div>#}
+{#            <div class="form_ button">#}
+{#                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm_g()">添加</a>#}
+{#                &nbsp;#}
+{#                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm_g()">修改</a>#}
+{#	    	    &nbsp;#}
+{#                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm_g()">取消</a>#}
+{#            </div>#}
+{#        </form>#}
+{#    </div>#}
+	<div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">
+        <div class="left north_title">主机管理后台管理系统</div>
+        <div class="right north_right"><a href="/logout">注销</a></div>
+        <div class="right north_right">{{ username }}</div>
+    </div>
+	<div data-options="region:'west',split:true,title:'菜单'" style="width:150px;">
+        <div class="easyui-accordion" data-options="fit:true,border:false">
+            <div title="主机" data-options="selected:true" style="padding:10px;">
+                <div class="menu_2" onclick="addTab('主机管理','/_host')">主机管理</div>
+                <div class="menu_2" onclick="addTab('分组管理','/_group')">分组管理</div>
+            </div>
+            <div title="用户" style="padding:10px;">
+                建设中...
+            </div>
+        </div>
+    </div>
+	<div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">east region</div>
+	<div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;"></div>
+	<div data-options="region:'center',title:'菜单内容'" style="position:relative;">
+        <div id="tt" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+            <div class="welcome" title="欢迎页"  style="padding:10px">
+                <p>欢迎进入</p>
+                <p>主机管理后台管理系统</p>
+            </div>
+        </div>
+    </div>
+    <script src="/static/commons.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5.2/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5.2/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5.2/demo.css">
+	<link rel="stylesheet" type="text/css" href="/static/commons.css">
+</head>
+<body>
+    <div class="mask hidden"></div>
+    <div id="_host" class="div_host hidden">
+        <form id="form_host" method="post" action="/add_host">
+            <div class="form_">
+                <label for="hostname" class="form_label">hostname:</label>
+                <input class="easyui-validatebox" type="text" name="hostname" data-options="required:true" />
+            </div>
+            <div class="form_">
+                <label for="ip" class="form_label">ip:</label>
+                <input class="easyui-validatebox" type="text" name="ip" data-options="required:true,validType:'ip'" />
+            </div>
+            <div class="form_">
+                <label for="port" class="form_label">port:</label>
+                <input class="easyui-validatebox" type="text" name="port" data-options="required:true,validType:'onlyNum'" />
+            </div>
+            <div class="form_">
+                <label for="os" class="form_label">os:</label>
+                <select name="os">
+                    <option selected value="windows">windows</option>
+                    <option value="linux">linux</option>
+                </select>
+            </div>
+            <div class="form_">
+                <label for="hostgroup" class="form_label">group:</label>
+                <select name="hostgroup">
+                    {% for row in group_list %}
+                        {% if row.groupname == "未分组" %}
+                            <option selected value={{ row.groupname }}>{{ row.groupname }}</option>
+                        {% else %}
+                            <option value={{ row.groupname }}>{{ row.groupname }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form_">
+                <input class="hidden" name="host_id"/>
+            </div>
+            <div class="form_ button">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">添加</a>
+                &nbsp;
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">修改</a>
+	    	    &nbsp;
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">取消</a>
+            </div>
+        </form>
+    </div>
+    <input id="add_host" type="button" value="添加主机"/>
+    <table class="easyui-datagrid" data-options="fit:true,fitColumns:true">
+        <thead>
+            <tr>
+                <th data-options="field:'itemid'" width="80"></th>
+                <th data-options="field:'hostname'" width="100">Host Name</th>
+                <th data-options="field:'ip',align:'center'" width="150">IP</th>
+                <th data-options="field:'port',align:'center'" width="40">Port</th>
+                <th data-options="field:'os',align:'center'" width="150">OS</th>
+                <th data-options="field:'group',align:'center'" width="150">Group</th>
+                <th data-options="field:'operation',align:'center'" width="80">Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in host_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td name="hostname">{{ row.hostname }}</td>
+                    <td>{{ row.ip }}</td>
+                    <td>{{ row.port }}</td>
+                    <td>{{ row.os }}</td>
+                    <td>{{ row.host_group.groupname }}</td>
+                    <td>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" name="modify_host" host_id={{ row.id }}>修改</a>
+                        <a name="del_host" href="/del_host?host_id={{ row.id }}" class="easyui-linkbutton">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript" src="/static/jquery-easyui-1.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+    <script src="/static/_host.js"></script>
+</body>
+</html>
